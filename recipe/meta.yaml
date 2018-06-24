@@ -9,7 +9,7 @@ package:
   version: {{ version }}
 
 source:
-  url: {{ repo }}/archive/v{{ version }}.tar.gz 
+  url: {{ repo }}/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -21,7 +21,9 @@ build:
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - python
     - setuptools
     - cython
@@ -39,8 +41,8 @@ test:
     - nose
   commands:
     - python -m nose --with-doctest
-    
-  imports: 
+
+  imports:
   - semigroups
   source_files:
     - semigroups/*
